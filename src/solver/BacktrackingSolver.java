@@ -33,7 +33,9 @@ public class BacktrackingSolver {
         BacktrackingSolver backtrackingSolver = new BacktrackingSolver();
         // TODO(me): Add functionality to parse an input from text file in helper and pass it.
         if(backtrackingSolver.solve(backtrackingSolver.sudokuBoard)){
-         // TODO(me) : Add functionality to print board
+            System.out.print("Solved sudoku board =============================");
+            System.out.println();
+            backtrackingSolver.sudokuUtil.printBoard(backtrackingSolver.sudokuBoard);
         } else {
             System.out.println("The given sudoku board cannot be solved");
         }
@@ -50,7 +52,7 @@ public class BacktrackingSolver {
         }
         int row = count / size;
         int column = count % size;
-        if (sudokuBoard[row][column] == -1) {
+        if (sudokuBoard[row][column] == 0) {
             for (int i = 1; i <= size; i++) {
                 if (sudokuUtil.isValid(sudokuBoard, row, column, i)) {
                     sudokuBoard[row][column] = i;
