@@ -5,7 +5,7 @@ public class SudokuUtil {
         int n = sudokuGrid.length;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                if (sudokuGrid[i][j] == -1) return false;
+                if (sudokuGrid[i][j] == 0) return false;
             }
         }
         return true;
@@ -14,7 +14,8 @@ public class SudokuUtil {
     public boolean isValid(int[][] sudokuGrid, int row, int column, int num) {
         sudokuGrid[row][column] = num;
         return isRowValid(sudokuGrid, row, column, num) &&
-                isColumnValid(sudokuGrid, row, column, num);
+                isColumnValid(sudokuGrid, row, column, num) &&
+                isSubSquareValid(sudokuGrid, row, column, num);
     }
 
     public boolean isRowValid(int[][] sudokuGrid, int row, int col, int num) {
@@ -36,6 +37,16 @@ public class SudokuUtil {
     }
 
     public boolean isSubSquareValid(int[][] sudokuGrid, int row, int col, int num) {
+        int n = (int) Math.sqrt(sudokuGrid.length);
+        int startRow = (row / n) * n;
+        int startCol = (col / n) * n;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (sudokuGrid[i + startRow][j + startCol] == sudokuGrid[row][col] &&
+                        (i + startRow != row || j + startCol != col))
+                    return false;
+            }
+        }
         return true;
     }
 }
