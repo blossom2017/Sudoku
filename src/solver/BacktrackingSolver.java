@@ -7,20 +7,21 @@ import helper.SudokuUtil;
  * The unfilled grids are denoted with 0s.
  **/
 public class BacktrackingSolver {
+    // TODO : Add functionality to measure time.
     int numberOfNodes;
     SudokuUtil sudokuUtil;
     int[][] defaultBoard = {
-            { 8, 0, 0, 0, 0, 0, 0, 0, 0 },
-            { 0, 0, 3, 6, 0, 0, 0, 0, 0 },
-            { 0, 7, 0, 0, 9, 0, 2, 0, 0 },
-            { 0, 5, 0, 0, 0, 7, 0, 0, 0 },
-            { 0, 0, 0, 0, 4, 5, 7, 0, 0 },
-            { 0, 0, 0, 1, 0, 0, 0, 3, 0 },
-            { 0, 0, 1, 0, 0, 0, 0, 6, 8 },
-            { 0, 0, 8, 5, 0, 0, 0, 1, 0 },
-            { 0, 9, 0, 0, 0, 0, 4, 0, 0 }
+            {8, 0, 0, 0, 0, 0, 0, 0, 0},
+            {0, 0, 3, 6, 0, 0, 0, 0, 0},
+            {0, 7, 0, 0, 9, 0, 2, 0, 0},
+            {0, 5, 0, 0, 0, 7, 0, 0, 0},
+            {0, 0, 0, 0, 4, 5, 7, 0, 0},
+            {0, 0, 0, 1, 0, 0, 0, 3, 0},
+            {0, 0, 1, 0, 0, 0, 0, 6, 8},
+            {0, 0, 8, 5, 0, 0, 0, 1, 0},
+            {0, 9, 0, 0, 0, 0, 4, 0, 0}
     };
-    int [][] sudokuBoard;
+    int[][] sudokuBoard;
 
 
     public BacktrackingSolver() {
@@ -32,10 +33,10 @@ public class BacktrackingSolver {
     public static void main(String[] args) {
         BacktrackingSolver backtrackingSolver = new BacktrackingSolver();
         // TODO(me): Add functionality to parse an input from text file in helper and pass it.
-        if(backtrackingSolver.solve(backtrackingSolver.sudokuBoard)){
-            System.out.print("Solved sudoku board =============================");
-            System.out.println();
+        if (backtrackingSolver.solve(backtrackingSolver.sudokuBoard)) {
+            System.out.println("Solved sudoku board =============================");
             backtrackingSolver.sudokuUtil.printBoard(backtrackingSolver.sudokuBoard);
+            System.out.print("The number of nodes expanded: " + backtrackingSolver.numberOfNodes);
         } else {
             System.out.println("The given sudoku board cannot be solved");
         }
@@ -50,6 +51,7 @@ public class BacktrackingSolver {
         if (count == size * size) {
             return this.sudokuUtil.isCompletedSudoku(sudokuBoard);
         }
+        numberOfNodes++;
         int row = count / size;
         int column = count % size;
         if (sudokuBoard[row][column] == 0) {
