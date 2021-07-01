@@ -1,6 +1,7 @@
 package solver;
 
 import helper.SudokuUtil;
+import java.lang.IllegalArgumentException;
 
 /**
  * Solves a sudoku puzzle using backtracking algorithm.
@@ -30,7 +31,7 @@ public class BacktrackingSolver {
         sudokuBoard = defaultBoard;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalArgumentException {
         BacktrackingSolver backtrackingSolver = new BacktrackingSolver();
         // TODO(me): Add functionality to parse an input from text file in helper and pass it.
         if (backtrackingSolver.solve(backtrackingSolver.sudokuBoard)) {
@@ -38,11 +39,11 @@ public class BacktrackingSolver {
             backtrackingSolver.sudokuUtil.printBoard(backtrackingSolver.sudokuBoard);
             System.out.print("The number of nodes expanded: " + backtrackingSolver.numberOfNodes);
         } else {
-            System.out.println("The given sudoku board cannot be solved");
+            throw new IllegalArgumentException("The given sudoku board cannot be solved");
         }
     }
 
-    private boolean solve(int[][] sudokuBoard) {
+    boolean solve(int[][] sudokuBoard) {
         int size = sudokuBoard.length;
         return solveUtil(sudokuBoard, 0, size);
     }
