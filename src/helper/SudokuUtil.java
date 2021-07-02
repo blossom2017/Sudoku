@@ -52,11 +52,15 @@ public class SudokuUtil {
 
     public void printBoard(int[][] sudokuGrid) {
         int size = sudokuGrid.length;
-        for(int i=0;i<size;i++){
-            for(int j=0;j<size;j++){
-                System.out.print(sudokuGrid[i][j]+ " ");
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print(sudokuGrid[i][j] + " ");
             }
             System.out.println();
         }
+    }
+
+    public boolean isPerfectSquare(int num) {
+        return (Math.sqrt(num) - Math.floor(Math.sqrt(num)) == 0);
     }
 }

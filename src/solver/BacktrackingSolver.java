@@ -46,7 +46,7 @@ public class BacktrackingSolver {
 
     boolean solve(int[][] sudokuBoard) {
         int size = sudokuBoard.length;
-        if (!isPerfectSquare(size)) {
+        if (!sudokuUtil.isPerfectSquare(size)) {
             throw new UnsupportedOperationException("Only perfect square sudoku boards are supported.");
         }
         return solveUtil(sudokuBoard, 0, size);
@@ -69,9 +69,5 @@ public class BacktrackingSolver {
             }
             return false;
         } else return solveUtil(sudokuBoard, count + 1, size);
-    }
-
-    private boolean isPerfectSquare(int num) {
-        return (Math.sqrt(num) - Math.floor(Math.sqrt(num)) == 0);
     }
 }

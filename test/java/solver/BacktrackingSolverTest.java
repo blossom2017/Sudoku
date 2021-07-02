@@ -60,8 +60,8 @@ class BacktrackingSolverTest {
     }
 
     @Test
-    void testSolvethrowsUnsupportedOperationException() {
-        int [][] unsupportedBoard = {
+    void testSolveThrowsUnsupportedOperationException() {
+        int[][] unsupportedBoard = {
                 {8, 0, 0, 0, 0, 0},
                 {0, 0, 3, 6, 0, 0},
                 {0, 7, 0, 0, 9, 0},
@@ -69,6 +69,8 @@ class BacktrackingSolverTest {
                 {0, 0, 0, 0, 4, 5},
                 {0, 0, 0, 1, 0, 0}
         };
-        assertThrows(UnsupportedOperationException.class, () ->{backtrackingSolver.solve(unsupportedBoard);});
+        assertThrows(UnsupportedOperationException.class, () -> {
+            backtrackingSolver.solve(unsupportedBoard);
+        });
     }
 }

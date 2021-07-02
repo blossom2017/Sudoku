@@ -12,6 +12,8 @@ import java.lang.IllegalArgumentException;
  * @author maitrishastri
  */
 public class FileInputUtil {
+    private SudokuUtil sudokuUtil = new SudokuUtil();
+
     private int[][] readFile(String filename) throws IllegalArgumentException {
         BufferedReader bf;
         int[][] sudokuBoard;
@@ -20,6 +22,9 @@ public class FileInputUtil {
             bf = new BufferedReader(new FileReader(filename));
             try {
                 int numberOfLines = Integer.valueOf(bf.readLine());
+                if (!sudokuUtil.isPerfectSquare(numberOfLines)) {
+                    throw new UnsupportedOperationException("Only perfect square sudoku boards are supported.");
+                }
                 sudokuBoard = new int[numberOfLines][numberOfLines];
                 for (int i = 0; i < numberOfLines; i++) {
                     //split by spaces into an array of numbers.
@@ -31,7 +36,7 @@ public class FileInputUtil {
                         sudokuBoard[i][j] = Integer.valueOf(temp[j]);
                     }
                 }
-                return sudokuBoard; //return the board once file has been read.
+                return sudokuBoard;
             } catch (IOException e) {
                 System.out.println("Cannot read file " + filename);
             }
