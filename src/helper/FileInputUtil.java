@@ -14,7 +14,7 @@ import java.lang.IllegalArgumentException;
 public class FileInputUtil {
     private SudokuUtil sudokuUtil = new SudokuUtil();
 
-    private int[][] readFile(String filename) throws IllegalArgumentException {
+    public int[][] readFile(String filename) throws IOException {
         BufferedReader bf;
         int[][] sudokuBoard;
 
@@ -28,7 +28,12 @@ public class FileInputUtil {
                 sudokuBoard = new int[numberOfLines][numberOfLines];
                 for (int i = 0; i < numberOfLines; i++) {
                     //split by spaces into an array of numbers.
-                    String temp[] = bf.readLine().split("\\s+");
+                    String temp[];
+                    try {
+                        temp = bf.readLine().split("\\s+");
+                    } catch (NullPointerException e) {
+                        throw new IllegalArgumentException("The sudoku given is invalid as the number of rows don't match the number of columns.");
+                    }
                     if (temp.length != numberOfLines) {
                         throw new IllegalArgumentException("The sudoku given is invalid as the number of rows don't match the number of columns.");
                     }
@@ -39,10 +44,11 @@ public class FileInputUtil {
                 return sudokuBoard;
             } catch (IOException e) {
                 System.out.println("Cannot read file " + filename);
+                throw e;
             }
         } catch (FileNotFoundException e) {
             System.out.println("Cannot find file " + filename);
+            throw e;
         }
-        return null;
     }
 }
