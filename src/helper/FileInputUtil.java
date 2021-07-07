@@ -14,7 +14,8 @@ import java.lang.IllegalArgumentException;
 public class FileInputUtil {
     private final SudokuUtil sudokuUtil = new SudokuUtil();
 
-    /** Reads a text file and converts it into a Sudoku Board. The first line of
+    /**
+     * Reads a text file and converts it into a Sudoku Board. The first line of
      * the text file contains the size of the Sudoku. Throws an exception if the
      * input is invalid
      * @param filename Complete filename with the path
