@@ -9,6 +9,8 @@ import java.time.Instant;
 /**
  * Solves a sudoku puzzle using backtracking algorithm.
  * The unfilled grids are denoted with 0s.
+ *
+ * @author maitrishastri
  **/
 public class BacktrackingSolver {
     int numberOfNodes;
@@ -67,6 +69,11 @@ public class BacktrackingSolver {
         }
     }
 
+    /**
+     * Solves a sudoku board and returns false if its unsolvable.
+     * @param sudokuBoard 2d array representation of a sudoku board.
+     * @return True/ False
+     */
     boolean solve(int[][] sudokuBoard) {
         int size = sudokuBoard.length;
         if (!sudokuUtil.isPerfectSquare(size)) {
@@ -75,6 +82,11 @@ public class BacktrackingSolver {
         return solveUtil(sudokuBoard, 0, size);
     }
 
+    /**
+     * Utility function to solve a sudoku board using backtracking algorithm.
+     * @param sudokuBoard 2d array representation of a sudoku board.
+     * @return True/ False
+     */
     private boolean solveUtil(int[][] sudokuBoard, int count, int size) {
         if (count == size * size) {
             return this.sudokuUtil.isCompletedSudoku(sudokuBoard);
