@@ -40,12 +40,11 @@ public class SudokuUtil {
         int n = (int) Math.sqrt(sudokuGrid.length);
         int startRow = (row / n) * n;
         int startCol = (col / n) * n;
-        for (int i = startRow; i < n; i++) {
-            for (int j = startCol; j < n; j++) {
-                if (sudokuGrid[i][j] == sudokuGrid[row][col] &&
-                        (i != row || j != col)) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (sudokuGrid[i + startRow][j + startCol] == sudokuGrid[row][col] &&
+                        (i + startRow != row || j + startCol != col))
                     return false;
-                }
             }
         }
         return true;
