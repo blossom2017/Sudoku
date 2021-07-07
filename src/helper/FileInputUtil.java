@@ -21,14 +21,14 @@ public class FileInputUtil {
         try {
             bf = new BufferedReader(new FileReader(filename));
             try {
-                int numberOfLines = Integer.valueOf(bf.readLine());
+                int numberOfLines = Integer.parseInt(bf.readLine());
                 if (!sudokuUtil.isPerfectSquare(numberOfLines)) {
                     throw new UnsupportedOperationException("Only perfect square sudoku boards are supported.");
                 }
                 sudokuBoard = new int[numberOfLines][numberOfLines];
                 for (int i = 0; i < numberOfLines; i++) {
                     //split by spaces into an array of numbers.
-                    String temp[];
+                    String[] temp;
                     try {
                         temp = bf.readLine().split("\\s+");
                     } catch (NullPointerException e) {
@@ -38,7 +38,7 @@ public class FileInputUtil {
                         throw new IllegalArgumentException("The sudoku given is invalid as the number of rows don't match the number of columns.");
                     }
                     for (int j = 0; j < temp.length; j++) {
-                        sudokuBoard[i][j] = Integer.valueOf(temp[j]);
+                        sudokuBoard[i][j] = Integer.parseInt(temp[j]);
                     }
                 }
                 return sudokuBoard;
