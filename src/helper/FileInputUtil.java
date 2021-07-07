@@ -7,13 +7,20 @@ import java.io.IOException;
 import java.lang.IllegalArgumentException;
 
 /**
- * Provides helper methods to create sudoku input from a text file
+ * Provides helper methods to create sudoku board from a text file.
  *
  * @author maitrishastri
  */
 public class FileInputUtil {
-    private SudokuUtil sudokuUtil = new SudokuUtil();
+    private final SudokuUtil sudokuUtil = new SudokuUtil();
 
+    /** Reads a text file and converts it into a Sudoku Board. The first line of
+     * the text file contains the size of the Sudoku. Throws an exception if the
+     * input is invalid
+     * @param filename Complete filename with the path
+     * @return int[][] 2d Array Sudoku board
+     * @throws IOException if the input is invalid.
+     */
     public int[][] readFile(String filename) throws IOException {
         BufferedReader bf;
         int[][] sudokuBoard;
